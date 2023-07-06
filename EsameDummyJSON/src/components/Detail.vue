@@ -14,6 +14,11 @@ export default {
         .then(res => res.json())
         .then(json => this.product = json)
     alert(JSON.stringify(this.$route.params))
+  },
+  methods: {
+    addToCart() {
+      this.$emit("add-to-cart", this.product)
+    }
   }
 }
 </script>
@@ -26,6 +31,7 @@ export default {
       {{ product.description }}
     </h3>
     <img v-for="immagine in product.images" :src="immagine" :key="immagine" alt="Immagine">
+    <button @click="addToCart(product)">Aggiungi al carrello</button>
   </div>
 </template>
 
